@@ -41,9 +41,47 @@
 # ------------------
 ```
 
+# Git Merge 규칙
+
+1. **브랜치 분리**
+   - `main`: 최종 완성 코드
+   - `develop`: 기능 통합 브랜치
+   - `feature/*`: 기능 개발 브랜치
+
+2. **직접 작업 금지**
+   - `main`, `develop`에서 직접 개발하지 않는다.
+   - 기능별 `feature/*` 브랜치에서 작업한다.
+
+3. **Merge 전 최신화**
+   ```bash
+   git switch develop
+   git pull origin develop
+
+   git switch feature/기능명
+   git merge develop
+   ```
+   - 충돌이 발생하면 Merge 전에 해결한다.
+
+4. **Pull Request 사용**
+   - 기능 개발 완료 후 `feature → develop` PR을 생성한다.
+   - 최소 1명의 팀원이 코드를 확인한 후 Merge한다.
+
+5. **Conflict 처리**
+   - 다른 팀원의 코드를 임의로 삭제하지 않는다.
+   - 충돌 해결이 어렵다면 해당 코드를 작성한 팀원과 확인한다.
+
+6. **Merge 후 정리**
+   - Merge가 완료된 `feature` 브랜치는 삭제한다.
+
+### 기본 흐름
+
+`develop 최신화 → feature 생성 → 개발 → commit/push → PR → 코드 리뷰 → develop Merge`
+
 ```python
 ex)
 docs: Update README
 
 가독성이 더 좋은 commit 메시지로 업데이트 하였습니다.
 ```
+
+202212215 이재현 확인했습니다.
